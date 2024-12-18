@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cafe Menu</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Cafe Menu</h1>
+    
+    <!-- Menu Items List -->
+    <h2>Menu Items</h2>
+    <ul>
+        {% for item in items %}
+        <li>{{ item.item }}: {{ item.price }} - {{ item.price2 }}</li>
+        {% endfor %}
+    </ul>
+    
+    <!-- Display error message if any -->
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    
+    <!-- Add New Item Section -->
+    <h2>Add New Item</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="item_name" placeholder="Item Name" required>
+        <input type="number" name="price" placeholder="Price" required>
+        <input type="number" name="price2" placeholder="Price2" value="0">
+        <button type="submit">Add Item</button>
+    </form>
+</body>
+</html>

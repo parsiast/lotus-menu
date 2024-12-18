@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Cafe Menu</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>Edit Cafe Menu</h1>
+    
+    <!-- If an item is found, display its details -->
+    {% if item %}
+    <h2>Update Item</h2>
+    <form method="post" action="{% url 'change_item' item.item %}">
+        {% csrf_token %}
+        <input type="text" name="item_name" value="{{ item.item }}" required>
+        <input type="number" name="price" value="{{ item.price }}" required>
+        <input type="number" name="price2" value="{{ item.price2 }}">
+        <button type="submit">Update Item</button>
+    </form>
+
+    <h2>Delete Item</h2>
+    <form method="post" action="{% url 'change_item' item.item %}">
+        {% csrf_token %}
+        <button type="submit" name="delete">Delete Item</button>
+    </form>
+    {% endif %}
+</body>
+</html>
